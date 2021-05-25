@@ -11,14 +11,10 @@ class Solution(object):
         i = 0
         j =1 
         while j < n:
-            print(nums)
-            print(i)
-            print(j)
             if nums[i] != nums[j]:
                 i+=1
                 nums[i] = nums[j]
             j+=1
-        print(nums)
         return i+1
 if __name__ == "__main__":
     objS = Solution()

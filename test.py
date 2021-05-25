@@ -1,1 +1,1 @@
-print( 1 and 1)
+print("HELLO".lower())
