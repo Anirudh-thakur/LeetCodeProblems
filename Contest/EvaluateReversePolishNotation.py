@@ -8,8 +8,6 @@ class Solution(object):
         """
         stack = []
         for token in tokens:
-            print(stack)
-            print(token)
             try:
                 int(token)
                 stack.append(int(token))
@@ -30,4 +28,5 @@ class Solution(object):
             return(int(result))  
 if __name__ == "__main__":
     ObjS = Solution()
-    print(ObjS.evalRPN(["10","6","9","3","+","-11","*","/","*","17","+","5","+"]))
+    print(ObjS.evalRPN(["10", "6", "9", "3", "+",
+                        "-11", "*", "/", "*", "17", "+", "5", "+"]))
