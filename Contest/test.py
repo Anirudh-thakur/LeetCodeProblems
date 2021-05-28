@@ -1,1 +1,1 @@
-print("11".isdigit())
+print(6^2)

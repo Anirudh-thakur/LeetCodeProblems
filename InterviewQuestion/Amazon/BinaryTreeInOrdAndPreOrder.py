@@ -1,12 +1,13 @@
 #https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
 #https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/discuss/34538/My-Accepted-Java-Solution
 
-
 class TreeNode(object):
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution(object):
     def buildTree(self, preorder, inorder):
         """
@@ -14,23 +15,22 @@ class Solution(object):
         :type inorder: List[int]
         :rtype: TreeNode
         """
-        n = len(inorder)
-        m = len(preorder)
-        return self.buildTreeHelper(0,0,n,m,inorder,preorder)
+        inOrderHash = dict()
+        n = len(preorder)
+        m = len(inorder)
+        for i in range(m):
+            inOrderHash[inorder[i]] = i
 
-    def buildTreeHelper(self,startIn, startPre, n, m, inorder, preorder):
-        print("start":startIn)
-        print(startPre)
-        if startIn >= n or startPre >= m:
-            return None
-        root = TreeNode(preorder[startPre])
-        i = inorder.index(preorder[startPre])
-        print(root.val)
-        print(i)
-        root.left = self.buildTreeHelper(startIn,startPre+1,i-1,m,inorder,preorder)
-        root.right = self.buildTreeHelper(
-            i+1, startPre+i-startIn+1, i+1, m, inorder, preorder)
-        return root
+        def buildTreeHelper(preStart, inStart, inEnd, preEnd):
+            if preStart>=preEnd or inStart >=inEnd:
+                 return None
+            root = TreeNode(preorder[preStart])
+            InOIndex = inOrderHash[root.val]
+            root.left = buildTreeHelper(preStart+1, inStart, InOIndex, preEnd)
+            root.right = buildTreeHelper(preStart+InOIndex-inStart+1, InOIndex+1, inEnd, preEnd)
+            return root
+        return buildTreeHelper(0,0,m,n)
+
 
 if __name__ == "__main__":
     ObjS = Solution()
