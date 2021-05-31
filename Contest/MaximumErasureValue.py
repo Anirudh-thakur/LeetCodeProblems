@@ -18,7 +18,7 @@ class Solution(object):
         Unique[nums[0]] = 0
         j = 1
         while j < n:
-            if Unique[nums[j]] == -1:
+            if Unique[nums[j]] == -1
                 dyn_max[j] = dyn_max[j-1] + nums[j]
                 Unique[nums[j]] = j
             else:
